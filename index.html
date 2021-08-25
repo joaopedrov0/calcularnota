@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Cálculo de notas.</title>
+
+        <style>
+            body{
+                background: #2196f3;
+                color: white;
+                font-family: Verdana, Geneva, Tahoma, sans-serif;
+                display: flex;
+                align-items: center;
+                flex-direction: column;
+            }
+
+            section{
+                background-color: white;
+                color: rgb(36, 36, 36);
+                padding: 15px;
+                border-radius: 20px;
+                margin-bottom: 15px;
+
+                width: 300px;
+            }
+
+            ul{
+                list-style: none;
+                margin: 0;
+                padding: 0;
+            }
+            
+            li{
+                display: flex;
+                flex-direction: column;
+
+                margin-bottom: 40px;
+            }
+
+            input{
+                width: 50%;
+            }
+
+            .btn{
+                width: 100px;
+                align-items: center;
+
+                border: none;
+                background-color: #2196f3;
+                color: white;
+
+                height: 30px;
+            }
+
+            .btn:hover{
+                cursor: pointer;
+                opacity: 50%;
+                transition: all 0.2s ease;
+            }
+
+            h1{
+                font-size: 48px;
+            }
+
+            .liBtn{
+                display: flex;
+                justify-content: flex-end;
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            <h1>Cálculador de notas.</h1>
+        </header>
+        <section>
+            <ul>
+                <li>
+                    <label for="p1">Insira sua nota da P1</label>
+                    <input type="number" name="p1" id="p1" value="0" min="0" max="3" required placeholder="Nota da P1">
+                </li>
+                <li>
+                    <label for="p2">Insira sua nota da P2</label>
+                    <input type="number" name="p2" id="p2" value="0" min="0" max="3" required placeholder="Nota da P2">
+                </li>
+                <li>
+                    <label for="pd1">Insira sua nota de procedimento</label>
+                    <input type="number" name="pd1" id="pd1" value="0" min="0" max="2" required placeholder="Nota do procedimento">
+                </li>
+                <li>
+                    <label for="pd2">Insira sua nota do segundo procedimento(Se houver)</label>
+                    <input type="number" name="pd2" id="pd2" value="0" min="0" max="2" placeholder="Nota do segundo procedimento">
+                </li>
+                <li class="liBtn">
+                    <label for="sim">Insira sua nota do simulado</label>
+                    <input type="number" name="sim" id="sim" value="0" min="0" max="2" required placeholder="Nota do simulado">
+                </li>
+                <li>
+                    <input class="btn" type="button" value="Calcular" onclick="calcular()">
+                </li>
+            </ul>
+
+            <div class="res">
+                <p></p>
+            </div>
+            <div class="finalRes">
+                <p></p>
+            </div>
+            <div class="mes">
+                <p></p>
+            </div>
+        </section>
+        <footer>
+            &copy;mastergamerjp
+        </footer>
+
+        <script>
+            var p1 = ''
+            var p2 = ''
+            var pd1 = ''
+            var pd2 = ''
+            var sim = ''
+
+            var res = document.querySelector('.res')
+            var finalRes = document.querySelector('.finalRes')
+            var mes = document.querySelector('.mes')
+
+            function calcular() {
+                res.innerText = ''
+                finalRes.innerText = ''
+                mes.innerText = ''
+
+                p1 = Number(document.querySelector('#p1').value)
+                p2 = Number(document.querySelector('#p2').value)
+                pd1 = Number(document.querySelector('#pd1').value)
+                pd2 = Number(document.querySelector('#pd2').value)
+                sim = Number(document.querySelector('#sim').value)
+
+                var pSoma = p1 + p2
+                var media = p1 + p2 + pd1 + pd2 + sim
+
+                if(pSoma < 3.6) {
+                    res.innerText += `Você não atingiu a média nas provas. (Média = 3,6  Sua nota = ${pSoma})`
+                } else {
+                    res.innerText += `Sua média de provas foi ${pSoma}, você não ficou abaixo de 3,6.`
+                }
+                finalRes.innerText += `A sua média final foi ${media}`
+                if(media < 6) {
+                    mes.innerText += 'Você ficou abaixo da média.'
+                    mes.style.color = 'red'
+                } else {
+                    mes.innerText += 'Parabéns! Você ficou acima da média'
+                    mes.style.color = 'green'
+                }
+            }
+        </script>
+    </body>
+</html>
