@@ -14,6 +14,8 @@
                 display: flex;
                 align-items: center;
                 flex-direction: column;
+                
+                transition: background-color 5s ease;
             }
 
             section{
@@ -56,12 +58,14 @@
                 color: white;
 
                 height: 30px;
+
+                transition: all 5s ease;
             }
 
             .btn:hover{
                 cursor: pointer;
                 opacity: 50%;
-                transition: all 0.2s ease;
+                transition: opacity 0.2s ease; 
             }
 
             h1{
@@ -140,6 +144,7 @@
                 pd1 = Number(document.querySelector('#pd1').value)
                 pd2 = Number(document.querySelector('#pd2').value)
                 sim = Number(document.querySelector('#sim').value)
+                btn = document.querySelector('.btn')
 
                 var pSoma = p1 + p2
                 var media = p1 + p2 + pd1 + pd2 + sim
@@ -147,15 +152,19 @@
                 if(pSoma < 3.6) {
                     res.innerText += `Você não atingiu a média nas provas. (Média = 3,6  Sua nota = ${pSoma})`
                 } else {
-                    res.innerText += `Sua média de provas foi ${pSoma}, você não ficou abaixo de 3,6.`
+                    res.innerText += `Sua média de provas foi ${pSoma.toFixed(2)}, você não ficou abaixo de 3,6.`
                 }
-                finalRes.innerText += `A sua média final foi ${media}`
+                finalRes.innerText += `A sua média final foi ${media.toFixed(2)}`
                 if(media < 6) {
                     mes.innerText += 'Você ficou abaixo da média.'
                     mes.style.color = 'red'
+                    document.body.style.backgroundColor = '#b71c1c'
+                    btn.style.backgroundColor = '#b71c1c'
                 } else {
                     mes.innerText += 'Parabéns! Você ficou acima da média'
                     mes.style.color = 'green'
+                    document.body.style.backgroundColor = 'green'
+                    btn.style.backgroundColor = 'green'
                 }
             }
         </script>
